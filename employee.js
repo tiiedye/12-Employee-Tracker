@@ -117,3 +117,73 @@ function employeesByDepartment() {
                 runApp();
             }
         })}
+
+function employeesByManager() {
+    inquirer
+        .prompt({
+            type: "list",
+            name: "managers",
+            message: "Which manager would you like to see?",
+            choices: [
+                "Bryan Swarthout",
+                "Ellie Denton",
+                "Return"
+            ]
+        }).then(function (answer) {
+            if (answer.managers === "Bryan Swarthout") {
+                var query = "SELECT * FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN department ON role.department_id = department.id";
+                connection.query(query, function(err, results) {
+                    for (var i = 0; i < results.length; i++) {
+                        if (results[i].manager_id === 1) {
+                            console.log(i + 1 + ".) Name: " + results[i].first_name + " " + results[i].last_name + " || Role: " + results[i].title + " || Salary: " + results[i].salary + " || Department: " + results[i].name);
+                        }
+                    }
+                    runApp();
+                })
+            } else if (answer.managers === "Ellie Denton") {
+                var query = "SELECT * FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN department ON role.department_id = department.id";
+                connection.query(query, function(err, results) {
+                    for (var i = 0; i < results.length; i++) {
+                        if (results[i].manager_id === 3) {
+                            console.log(i + 1 + ".) Name: " + results[i].first_name + " " + results[i].last_name + " || Role: " + results[i].title + " || Salary: " + results[i].salary + " || Department: " + results[i].name);
+                        }
+                    }
+                    runApp();
+                })
+            } else {
+                runApp();
+            }
+        })
+}
+
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+               type: "input",
+               name:  "firstName",
+               message: "Enter Employee's first name:"
+            },
+            {
+                type: "input",
+                name: "lastName",
+                message: "Enter the Employee's last name:"
+            },
+            {
+                type: "rawlist",
+                name: "roleId",
+                message: "What role does this employee have?",
+                choices: function () {
+                    var roleArray = [];
+                    var query = "SELECT * FROM role"
+                    connection.query(query, function(err, results) {
+                        for (var i = 0; i < results.length; i++) {
+                            roleArray.push(results[i].id);
+                        }
+                    })
+                    console.log(roleArray);
+                    return roleArray;
+                }
+            }
+        ])
+}

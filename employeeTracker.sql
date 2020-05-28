@@ -7,8 +7,8 @@ CREATE TABLE employees (
 	id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    role VARCHAR(50) NOT NULL,
-    manager VARCHAR(50),
+    role_id INT NOT NULL,
+    manager_id INT,
     PRIMARY KEY (id)
 );
 
@@ -54,24 +54,24 @@ VALUES ("Lawyer", 190000, 3);
 
 SELECT * FROM role;
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Bryan", "Swarthout", "Lead Engineer", NULL);
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Bryan", "Swarthout", 1, NULL);
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Wilson", "Lam", "Software Engineer", "Bryan Swarthout");
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Wilson", "Lam", 2, 1);
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Jace", "Clements", "Software Engineer", "Bryan Swarthout");
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Jace", "Clements", 2, 1);
 
 SELECT * FROM employees;
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Ellie", "Denton", "Sales Lead", NULL);
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Ellie", "Denton", 3, NULL);
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Jessica", "Durston", "Salesperson", "Ellie Denton");
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Jessica", "Durston", 4, 3);
 
-INSERT INTO employees (first_name, last_name, role, manager)
-VALUES ("Briar", "Robertson", "Lawyer", NULL);
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Briar", "Robertson", 5, NULL);
 
-SELECT employees.first_name, employees.last_name, employees.role_id, employees.manager_id FROM employees LEFT JOIN role ON employees.role_id = role.title;
+SELECT * FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN department ON role.department_id = department.id;
