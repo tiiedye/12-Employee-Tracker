@@ -6,6 +6,8 @@ a solution for managing a company's employees using node, inquirer, and MySQL.
 <img src="./Assets/screenshot.png"
      alt="Img"
      style="margin-right: 10px; height: 400px;" />
+     
+Video: https://www.youtube.com/watch?v=aPIwQ1CNN3E&t
 
 ### Requirements for VS Code
 * Node
