@@ -3,11 +3,9 @@
 # Employee Tracker
 a solution for managing a company's employees using node, inquirer, and MySQL.
 
-<img src="./assets/screenshot.png"
+<img src="./Assets/screenshot.png"
      alt="Img"
      style="margin-right: 10px; height: 400px;" />
-
-[![Alt text](https://img.youtube.com/vi/aPIwQ1CNN3E&t/0.jpg)](https://www.youtube.com/watch?v=aPIwQ1CNN3E&t)
 
 ### Requirements for VS Code
 * Node
